@@ -57,7 +57,7 @@
   position: fixed;
   bottom: 0;
   width: inherit;
-  padding: 0 0 10% 0;
+  padding: 0 0 0% 0;
 }
 
 .trivia-button {
@@ -69,10 +69,24 @@
 .quiz-question-container {
   border: 1px black solid;
   margin: 19% 10% 0 10%;
-  padding: 10%;
+  padding: 32px;
   word-wrap: break-word;
 }
 
 .quiz-counter {
-  padding-top: 10%;
+  padding-top: 0%;
+}
+
+#icon {
+  width: 19px;
+  cursor: pointer;
+}
+
+.results-container {
+  overflow-y: scroll;
+  max-height: 17.5em;
+}
+
+#result {
+  color: #bdbdbd;
 }

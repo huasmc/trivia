@@ -25,8 +25,11 @@ export const quizSlice = createSlice({
     addAnswer: (state, action) => {
       state.answers.push(action.payload);
     },
+    clearQuiz: (state, action) => {
+      return { questions: [], answers: [] };
+    },
   },
 });
 
-export const { updateQuiz, addAnswer } = quizSlice.actions;
+export const { updateQuiz, addAnswer, clearQuiz } = quizSlice.actions;
 export const quizReducer = quizSlice.reducer;

@@ -3,6 +3,8 @@ import "./App.css";
 import HomeScreen from "./features/HomeScreen/HomeScreen";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Quiz from "./features/Quiz/Quiz";
+import Results from "./features/Results/Results";
+
 function App() {
   return (
     <div className="App">
@@ -11,6 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/quiz" element={<Quiz />} />
+            <Route path="/results" element={<Results />} />
           </Routes>
         </BrowserRouter>
       </header>

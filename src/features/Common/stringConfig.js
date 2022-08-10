@@ -4,3 +4,12 @@ export const HOME_SCREEN = {
   PROMPT: "Can you score 100%?",
   BEGIN: "BEGIN",
 };
+
+export const RESULTS_SCREEN = {
+  PLAY_AGAIN: "PLAY AGAIN?",
+};
+
+export const QUIZ = {
+  TRUE: "True",
+  FALSE: "False",
+};

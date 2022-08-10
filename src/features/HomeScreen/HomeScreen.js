@@ -1,4 +1,4 @@
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { TriviaButton } from "../Common/TriviaButton";
 import { HOME_SCREEN } from "../Common/stringConfig";
 import { Link } from "react-router-dom";

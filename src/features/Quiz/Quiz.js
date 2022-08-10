@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAnswer, fetchQuiz } from "./QuizSlice";
 import Card from "../Card/Card";
 import { TriviaButton } from "../Common/TriviaButton";
+import { useNavigate } from "react-router-dom";
+import { QUIZ } from "../Common/stringConfig";
 
 export const Quiz = () => {
   const quiz = useSelector((state) => state.quiz.questions);
   const dispatch = useDispatch();
   const quizLoaded = useRef(false);
   const [activeQuestion, setActiveQuestion] = useState(0);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!quizLoaded.current) {
@@ -25,6 +27,7 @@ export const Quiz = () => {
       isCorrect: quiz[activeQuestion].correct_answer.toLowerCase() === answer,
     };
     await dispatch(addAnswer(result));
+    loadNextQuestion();
   };
 
   const loadNextQuestion = () => {
@@ -33,7 +36,7 @@ export const Quiz = () => {
       nextQuestion = activeQuestion < 9 ? activeQuestion + 1 : activeQuestion;
       setActiveQuestion(nextQuestion);
     } else {
-      history.push("/results");
+      navigate("/results");
     }
   };
 
@@ -48,12 +51,15 @@ export const Quiz = () => {
       <Row className="quiz-counter">
         {activeQuestion + 1} of {quiz.length}
       </Row>
-      <Row style={{ display: "flex", marginTop: "10%" }}>
+      <Row style={{ display: "flex", position: "fixed", bottom: 0 }}>
         <Col xs={6}>
-          <TriviaButton name="true" onClick={() => handleAnswer("true")} />
+          <TriviaButton name={QUIZ.TRUE} onClick={() => handleAnswer("true")} />
         </Col>
         <Col xs={6}>
-          <TriviaButton name="false" onClick={() => handleAnswer("false")} />
+          <TriviaButton
+            name={QUIZ.FALSE}
+            onClick={() => handleAnswer("false")}
+          />
         </Col>
       </Row>
     </>

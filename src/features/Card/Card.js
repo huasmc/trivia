@@ -1,11 +1,10 @@
 import { Row } from "react-bootstrap";
+import stringParser from "../../utils/stringParser";
 
 const Card = ({ question }) => {
   return (
     <div className="quiz-question-container">
-      <Row className="home-description">
-        {question.replace(/&quot;/g, '"').replace(/&#039;/g, "'")}
-      </Row>
+      <Row>{stringParser(question)}</Row>
     </div>
   );
 };
