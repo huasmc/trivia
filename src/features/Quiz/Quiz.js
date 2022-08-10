@@ -5,7 +5,7 @@ import { addAnswer, fetchQuiz } from "./QuizSlice";
 import Card from "../Card/Card";
 import { TriviaButton } from "../Common/TriviaButton";
 import { useNavigate } from "react-router-dom";
-import { QUIZ } from "../Common/stringConfig";
+import { ERRORS, QUIZ } from "../Common/stringConfig";
 
 export const Quiz = () => {
   const quiz = useSelector((state) => state.quiz.questions);
@@ -22,12 +22,20 @@ export const Quiz = () => {
   }, [quiz]);
 
   const handleAnswer = async (answer) => {
-    const result = {
-      question: quiz[activeQuestion].question,
-      isCorrect: quiz[activeQuestion].correct_answer.toLowerCase() === answer,
-    };
-    await dispatch(addAnswer(result));
-    loadNextQuestion();
+    try {
+      const result = {
+        question: quiz[activeQuestion].question,
+        isCorrect: quiz[activeQuestion].correct_answer.toLowerCase() === answer,
+      };
+      const addition = await dispatch(addAnswer(result));
+      if (addition.type === "quiz/addAnswer") {
+        loadNextQuestion();
+      } else {
+        throw new Error(ERRORS.QUESTION_LOAD);
+      }
+    } catch (err) {
+      alert(err);
+    }
   };
 
   const loadNextQuestion = () => {

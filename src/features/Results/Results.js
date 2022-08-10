@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row } from "react-bootstrap";
 import stringParser from "../../utils/stringParser";
 import { TriviaButton } from "../Common/TriviaButton";
-import { RESULTS_SCREEN } from "../Common/stringConfig";
+import { ERRORS, RESULTS_SCREEN } from "../Common/stringConfig";
 import { useNavigate } from "react-router-dom";
 import { clearQuiz } from "../Quiz/QuizSlice";
 
@@ -17,8 +17,16 @@ const Results = () => {
   };
 
   const playAgain = async () => {
-    await dispatch(clearQuiz());
-    navigate("/");
+    try {
+      const cleared = await dispatch(clearQuiz());
+      if (cleared.type === "quiz/clearQuiz") {
+        navigate("/");
+      } else {
+        throw new Error(ERRORS.QUESTIONS_CLEAR);
+      }
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (

@@ -1,15 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { quizEndpoint } from "../Common/endpoints";
+import { ERRORS } from "../Common/stringConfig";
 
 export const fetchQuiz = createAsyncThunk(
   "quiz/fetch",
   async (params, { dispatch }) => {
-    const response = await fetch(
-      quizEndpoint(params.amount, params.difficulty, params.type)
-    );
-    const parsedResponse = await response.json();
-    dispatch(updateQuiz(parsedResponse));
-    return parsedResponse;
+    try {
+      const response = await fetch(
+        quizEndpoint(params.amount, params.difficulty, params.type)
+      );
+      const parsedResponse = await response.json();
+      if (parsedResponse.response_code === 0) {
+        dispatch(updateQuiz(parsedResponse));
+        return parsedResponse;
+      } else {
+        throw new Error(ERRORS.QUESTIONS_FETCH);
+      }
+    } catch (err) {
+      alert(err);
+    }
   }
 );
 

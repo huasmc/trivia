@@ -13,3 +13,9 @@ export const QUIZ = {
   TRUE: "True",
   FALSE: "False",
 };
+
+export const ERRORS = {
+  QUESTION_LOAD: "Failed to load next question.",
+  QUESTIONS_CLEAR: "Failed to clear question",
+  QUESTIONS_FETCH: "Failed API fetch",
+};
