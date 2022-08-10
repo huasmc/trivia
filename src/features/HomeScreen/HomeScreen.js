@@ -1,6 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import { TriviaButton } from "../Common/TriviaButton";
-import { HOME_SCREEN } from "./stringConfig";
+import { HOME_SCREEN } from "../Common/stringConfig";
+import { Link } from "react-router-dom";
 
 const HomeScreen = () => {
   return (
@@ -11,7 +12,9 @@ const HomeScreen = () => {
       <Row className="home-description">{HOME_SCREEN.DESCRIPTION}</Row>
       <Row className="home-prompt">{HOME_SCREEN.PROMPT}</Row>
       <Row className="bottom-menu-container">
-        <TriviaButton name={HOME_SCREEN.BEGIN} />
+        <Link to="/quiz">
+          <TriviaButton name={HOME_SCREEN.BEGIN} />
+        </Link>
       </Row>
     </>
   );

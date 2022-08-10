@@ -1,3 +1,7 @@
-export const TriviaButton = ({ name }) => {
-  return <button className="trivia-button">{name}</button>;
+export const TriviaButton = ({ name, onClick }) => {
+  return (
+    <button className="trivia-button" onClick={onClick}>
+      {name}
+    </button>
+  );
 };
