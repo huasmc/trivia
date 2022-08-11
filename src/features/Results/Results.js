@@ -43,6 +43,7 @@ const Results = () => {
               <tr key={index}>
                 <td>
                   <img
+                    alt={answer.isCorrect ? "+" : "-"}
                     id="icon"
                     src={answer.isCorrect ? "plus-icon.png" : "minus-icon.png"}
                   />

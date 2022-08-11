@@ -19,7 +19,7 @@ export const Quiz = () => {
       dispatch(fetchQuiz({ amount: 10, difficulty: "hard", type: "boolean" }));
       quizLoaded.current = true;
     }
-  }, [quiz]);
+  }, [quiz, dispatch]);
 
   const handleAnswer = async (answer) => {
     try {
